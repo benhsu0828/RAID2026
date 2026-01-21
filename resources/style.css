@@ -580,3 +580,22 @@ body {
     text-align: center;
   }
 }
+
+.attraction-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.attraction-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.attraction-card h4 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.attraction-card h4 a:hover {
+  color: #d9534f;
+}
