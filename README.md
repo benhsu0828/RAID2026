@@ -24,7 +24,9 @@ Official Website for The 29th International Symposium on Research in Attacks, In
   
   - Other conference-related images
 
-- ***_html*.html** (HTML page files)
+- example/ (Example HTML files for development and testing)
+  
+  - accepted.html (Example accepted papers page using test data)
 
 ## Updating Content
 

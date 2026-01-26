@@ -86,11 +86,13 @@ function loadPapersFromCSV(csvText) {
 
 /**
  * Main function to load data files
+ * @param {string} csvPath - Optional custom CSV path (default: 'data/accepted_papers.csv')
  */
-async function loadDataFiles() {
+async function loadDataFiles(csvPath = 'data/accepted_papers.csv') {
   try {
     // Load accepted papers CSV
-    const csvText = await requestCSV('data/test_accepted_papers.csv');
+    console.log(`Loading CSV from: ${csvPath}`);
+    const csvText = await requestCSV(csvPath);
     loadPapersFromCSV(csvText);
     
     // Render papers after loading
@@ -163,10 +165,19 @@ function displayError(message) {
  */
 function setupSearchFunctionality() {
   const searchInput = document.getElementById('paperSearch');
+  const clearBtn = document.getElementById('clearSearchBtn');
   
   if (searchInput) {
     searchInput.addEventListener('input', function() {
       performSearch();
+      // Show/hide clear button based on input
+      if (clearBtn) {
+        if (searchInput.value.trim() !== '') {
+          clearBtn.classList.add('active');
+        } else {
+          clearBtn.classList.remove('active');
+        }
+      }
     });
   }
 }
@@ -210,9 +221,11 @@ function performSearch() {
 function clearSearch() {
   const searchInput = document.getElementById('paperSearch');
   const searchStats = document.getElementById('searchStats');
+  const clearBtn = document.getElementById('clearSearchBtn');
   
   if (searchInput) searchInput.value = '';
   if (searchStats) searchStats.textContent = '';
+  if (clearBtn) clearBtn.classList.remove('active');
   
   performSearch();
 }
@@ -220,8 +233,11 @@ function clearSearch() {
 // Auto-load data when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
   // Only load if we're on the accepted papers page
-  if (document.getElementById('acceptedPapersContainer')) {
-    loadDataFiles();
+  const container = document.getElementById('acceptedPapersContainer');
+  if (container) {
+    // Check if container has a custom CSV path attribute
+    const customPath = container.getAttribute('data-csv-path');
+    loadDataFiles(customPath || 'data/accepted_papers.csv');
     setupSearchFunctionality();
   }
 });
