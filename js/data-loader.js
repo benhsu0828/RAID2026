@@ -45,6 +45,7 @@ function requestCSV(csvPath) {
  * @param {string} csvText - Raw CSV text
  * @returns {Array} Array of paper objects
  */
+/*
 function parseCSV(csvText) {
   const lines = csvText.trim().split('\n');
   const headers = lines[0].split(',').map(h => h.trim());
@@ -61,6 +62,59 @@ function parseCSV(csvText) {
     papers.push(paper);
   }
   
+  return papers;
+}*/
+
+function parseCSV(csvText) {
+  // 將單列 CSV 字串解析為欄位陣列的輔助函式（支援雙引號處理）
+  function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      const nextChar = line[i + 1];
+
+      if (char === '"') {
+        if (inQuotes && nextChar === '"') {
+          // 處理轉義的雙引號 ("")
+          current += '"';
+          i++; // 跳過下一個雙引號
+        } else {
+          // 切換引號狀態
+          inQuotes = !inQuotes;
+        }
+      } else if (char === ',' && !inQuotes) {
+        // 不在引號內遇到逗號 -> 切分欄位
+        result.push(current.trim());
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    result.push(current.trim()); // 推入最後一個欄位
+    return result;
+  }
+
+  // 拆分每一行（同時過濾掉空行）
+  const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== '');
+  if (lines.length === 0) return [];
+
+  const headers = parseCSVLine(lines[0]);
+  const papers = [];
+
+  for (let i = 1; i < lines.length; i++) {
+    const values = parseCSVLine(lines[i]);
+    const paper = {};
+
+    headers.forEach((header, index) => {
+      paper[header] = values[index] !== undefined ? values[index] : '';
+    });
+
+    papers.push(paper);
+  }
+
   return papers;
 }
 
