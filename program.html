@@ -62,39 +62,30 @@
     </div>
 
 
+
+    <!---- Remove  ----->
+
+
     <!-- Container (Program Section) -->
     <div id="program" class="container-body">
       <div class="text-center">
         <h2>Conference Program</h2>
-        <p class="section-lead">October 11-14, 2026 · Lancaster, United Kingdom</p>
-        <p> Registration 08:00 – 17:00 per day at ...</p>
-        <hr />
       </div>
+
+      <hr />
 
       <!-- Tab Navigation -->
       <ul class="nav nav-tabs" role="tablist" style="margin-bottom: 30px; border-bottom: 2px solid #ddd;">
-        <li class="active"><a data-toggle="tab" href="#day1" style="font-weight: 600;">October 11 (Sun.)</a></li>
-        <li><a data-toggle="tab" href="#day2" style="font-weight: 600;">October 12 (Mon.)</a></li>
-        <li><a data-toggle="tab" href="#day3" style="font-weight: 600;">October 13 (Tue.)</a></li>
-        <li><a data-toggle="tab" href="#day4" style="font-weight: 600;">October 14 (Wed.)</a></li>
+        <li class="active"><a data-toggle="tab" href="#day1" style="font-weight: 600;">October 12 (Mon.)</a></li>
+        <li><a data-toggle="tab" href="#day2" style="font-weight: 600;">October 13 (Tue.)</a></li>
+        <li><a data-toggle="tab" href="#day3" style="font-weight: 600;">October 14 (Wed.)</a></li>
       </ul>
 
       <!-- Tab Content -->
       <div class="tab-content">
 
-        <!-- Day 1: October 11 -->
+        <!-- Day 1: October 12 -->
         <div id="day1" class="tab-pane fade in active">
-          <div class="text-center" style="margin-bottom: 30px;">
-            <h3 style="margin-bottom: 15px;">October 11, 2026 (Sunday)</h3>
-            <a class="btn btn-raid-outline" href="#" target="_blank">
-              <span class="glyphicon glyphicon-download-alt"></span> This is an arriving day, no program.
-            </a>
-          </div>
-
-
-
-        <!-- Day 2: October 12 -->
-        <div id="day2" class="tab-pane fade">
           <div class="text-center" style="margin-bottom: 30px;">
             <h3 style="margin-bottom: 15px;">October 12, 2026 (Monday)</h3>
             <a class="btn btn-raid-outline" href="#" target="_blank">
@@ -102,23 +93,37 @@
             </a>
           </div>
 
-          <!-- Session 1: 09:00 - 10:00 -->
+          <!-- Coffee Break: 9:00 - 9:30 -->
+          <div class="info-card" style="background: #f9f9f9;">
+            <div class="row">
+              <div class="col-md-3">
+                <h4 style="margin-top: 0;"><strong>09:00 - 09:30</strong></h4>
+              </div>
+              <div class="col-md-9">
+                <h4 style="margin-top: 0;">
+                  <img src="images/icons/remarks.svg" alt="Remarks" style="width: 24px; height: 24px; margin-right: 8px;">
+                  <strong>Opening Remarks</strong>
+                </h4>
+              </div>
+            </div>
+          </div> 
+
+          <!-- Keynote I: 09:30 - 10:30 -->
           <div class="info-card">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>09:00 - 10:00</strong></h4>
+                <h4 style="margin-top: 0;"><strong>09:30 - 10:30</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
+                <h4 style="margin-top: 0;"><strong>Keynote: TBD</strong></h4>
                 <p><strong>At:</strong> TBD</p>
                 <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
                 <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day2-session1" data-toggle="collapse" aria-expanded="false">
+                  <a class="toggle-link" href="#keynote1" data-toggle="collapse" aria-expanded="false">
                     <span class="toggle-icon">▶</span>More Details
                   </a>
                 </p>
-                <div id="day2-session1" class="collapse"
+                <div id="keynote1" class="collapse"
                   style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
                   <p><strong>Description:</strong> TBD</p>
                   <p><strong>About Speaker:</strong> TBD</p>
@@ -127,183 +132,231 @@
             </div>
           </div>
 
-          <!-- Session 2: 10:00 - 11:00 -->
-          <div class="info-card">
+          <!-- Coffee Break: 10:30 - 11:00 -->
+          <div class="info-card" style="background: #f9f9f9;">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>10:00 - 11:00</strong></h4>
+                <h4 style="margin-top: 0;"><strong>10:30 - 11:00</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day2-session2" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day2-session2" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
-                </div>
+                <h4 style="margin-top: 0;">
+                  <img src="images/icons/coffee.svg" alt="Coffee Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+                  <strong>Break</strong>
+                </h4>
               </div>
             </div>
-          </div>
+          </div> 
 
-          <!-- Session 3: 11:00 - 12:00 -->
+          <!-- Session 1A / 1B: 11:00 - 12:00 -->
           <div class="info-card">
             <div class="row">
               <div class="col-md-3">
                 <h4 style="margin-top: 0;"><strong>11:00 - 12:00</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day2-session3" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day2-session3" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
+                <div class = "row">
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 1A:<br/>Web Security &amp; Phishing</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session1a" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session1a" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>224.</strong> Phishing the Phishers with SpecularNet: Hierarchical Graph Autoencoding for Reference-Free Web Phishing Detection</p>
+                      <p><strong>473.</strong> Clouding the Mirror: Stealthy Prompt Injection Attacks Targeting LLM-based Phishing Detection</p>
+                      <p><strong>628.</strong> Exploiting Unsafe Rendering in LLM-Powered Workflow Platforms</p>
+                    </div>
+                  </div>
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 1B:<br/>IoT &amp; Network Systems</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session1b" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session1b" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>95.</strong> Cherry-Picking Bits: Enabling Key Reconstruction on Resource-Constrained Devices using SRAM PUFs</p>
+                      <p><strong>285.</strong> Effective Handling of Erroneous Executions of Automation Rules on Multiple Platform Smart Home IoT Systems</p>
+                      <p><strong>786.</strong> FragStrike: A Memory-Exhaustion Attack against Tor Nodes via Heap Fragmentation</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Lunch Break: 12:00 - 13:00 -->
+          <!-- Lunch Break: 12:00 - 13:30 -->
           <div class="info-card" style="background: #f9f9f9;">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>12:00 - 13:00</strong></h4>
+                <h4 style="margin-top: 0;"><strong>12:00 - 13:30</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Lunch Break</strong></h4>
+                <h4 style="margin-top: 0;">
+                  <img src="images/icons/lunch.svg" alt="Lunch Break" style="width: 24px; height: 24px; margin-right: 8px;">
+                  <strong>Lunch Break</strong>
+                </h4>
               </div>
             </div>
           </div>
 
-          <!-- Session 4: 13:00 - 14:00 -->
+          <!-- Session 2A / 2B 13:30 - 14:50 -->
           <div class="info-card">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>13:00 - 14:00</strong></h4>
+                <h4 style="margin-top: 0;"><strong>13:30 - 14:50</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day2-session4" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day2-session4" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
+                <div class = "row">
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 2A:<br/>Program Analysis &amp; Reverse Engineering</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session2a" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session2a" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>216.</strong> Function Name Recovery via Self-Transformative and Variable-Enrichment Approaches</p>
+                      <p><strong>421.</strong> ObfuscationGT: A Comprehensive Evaluation of Disassembler Accuracy and Coverage on Obfuscated Code</p>
+                      <p><strong>799.</strong> Waslr: Fine-Grained Memory Randomization for WebAssembly</p>
+                      <p><strong>871.</strong> 0xELF: Reverse Engineering Framework for Flexo-Generated Weird Machines</p>
+                    </div>
+                  </div>
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 2B:<br/>Cyber-Physical &amp; Industrial Control Systems</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session2b" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session2b" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>174.</strong> Patronus: Real-Time Authentication of Industrial Control Systems Communication via Process-Aware Certificates</p>
+                      <p><strong>287.</strong> Unveiling Operator-Induced Vulnerabilities in OCPP: From Deployment Misconfigurations to Message-Processing Exploits</p>
+                      <p><strong>222.</strong> CANdy: Backward-Compatible CAN Message Authentication via Sub-Bit Injection on Commercial Controllers</p>
+                      <p><strong>479.</strong> DEFFSM: Deployable and Explainable Fuzzy Finite State Machine for Anomaly Detection of Time-Series Data</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Session 5: 14:00 - 15:00 -->
-          <div class="info-card">
-            <div class="row">
-              <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>14:00 - 15:00</strong></h4>
-              </div>
-              <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day2-session5" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day2-session5" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Coffee Break: 15:00 - 15:30 -->
+          <!-- Coffee Break: 14:50 - 15:30 -->
           <div class="info-card" style="background: #f9f9f9;">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>15:00 - 15:30</strong></h4>
+                <h4 style="margin-top: 0;"><strong>14:50 - 15:30</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Coffee Break</strong></h4>
+                <h4 style="margin-top: 0;">
+                  <img src="images/icons/coffee.svg" alt="Coffee Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+                  <strong>Break</strong>
+                </h4>
               </div>
             </div>
-          </div>
+          </div> 
 
-          <!-- Session 6: 15:30 - 16:30 -->
+          <!-- Session 3A / 3B: 15:30 - 16:50 -->
           <div class="info-card">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>15:30 - 16:30</strong></h4>
+                <h4 style="margin-top: 0;"><strong>15:30 - 16:50</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day2-session6" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day2-session6" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
+                <div class = "row">
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 3A:<br/>Systems &amp; Kernel Security</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session3a" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session3a" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>8.</strong> Sentinel: An Isolation Framework for Security Services on TrustZone</p>
+                      <p><strong>55.</strong> vSECvma: A Formally Verified Linux Kernel Protection Framework</p>
+                      <p><strong>131.</strong> Firefly: High-Performance Transient Execution Attack Defenses for In-Kernel Sandboxes</p>
+                      <p><strong>319.</strong> Too Private to Tell: Practical Token Theft Attacks on Apple Intelligence</p>
+                    </div>
+                  </div>
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 3B:<br/>Threat Intelligence &amp; Intrusion Detection</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session3b" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session3b" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>16.</strong> STINER: Automated Extraction of Strategic Cyber Threat Intelligence from X</p>
+                      <p><strong>90.</strong> Sometimes Less is More: A Minimalist Approach to Neighborhood-level Provenance-based Intrusion Detection</p>
+                      <p><strong>557.</strong> Grounded in Knowledge, Guided by Reason: Automated Fake Cyber Threat Intelligence Detection via Knowledge-Augmented LLM Rationales</p>
+                      <p><strong>821.</strong> No Data? No Problem: Synthesizing Security Graphs for Better Intrusion Detection</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Session 7: 16:30 - 17:30 -->
+          <!-- Session Poster: 17:00 - 17:40 -->
           <div class="info-card">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>16:30 - 17:30</strong></h4>
+                <h4 style="margin-top: 0;"><strong>17:00 - 17:40</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
+                <h4 style="margin-top: 0;"><strong>Poster Session</strong></h4>
                 <p><strong>At:</strong> TBD</p>
                 <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
                 <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day2-session7" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
+                  <a class="toggle-link" href="#sessionposter" data-toggle="collapse" aria-expanded="false">
+                    <span class="toggle-icon">▶</span>Presenting Posters
                   </a>
                 </p>
-                <div id="day2-session7" class="collapse"
+                <div id="sessionposter" class="collapse"
                   style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
+                  <p><strong>TBD.</strong> TBD</p>
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- Banquet 18:00 - 20:00 -->
+          <div class="info-card" style="background: #f9f9f9;">
+            <div class="row">
+              <div class="col-md-3">
+                <h4 style="margin-top: 0;"><strong>18:00 - 20:00</strong></h4>
+              </div>
+              <div class="col-md-9">
+                <h4 style="margin-top: 0;">
+                  <img src="images/icons/dinner.svg" alt="Banquet" style="width: 24px; height: 24px; margin-right: 8px;">
+                  <strong>Banquet</strong>
+                </h4>
+              </div>
+            </div>
+          </div> 
         </div>
 
-        <!-- Day 3: October 13 -->
-        <div id="day3" class="tab-pane fade">
+        <!-- Day 2: October 13 -->
+        <div id="day2" class="tab-pane fade">
           <div class="text-center" style="margin-bottom: 30px;">
             <h3 style="margin-bottom: 15px;">October 13, 2026 (Tuesday)</h3>
             <a class="btn btn-raid-outline" href="#" target="_blank">
@@ -311,23 +364,22 @@
             </a>
           </div>
 
-          <!-- Session 1: 09:00 - 10:00 -->
+          <!-- Keynote II: 09:00 - 10:00 -->
           <div class="info-card">
             <div class="row">
               <div class="col-md-3">
                 <h4 style="margin-top: 0;"><strong>09:00 - 10:00</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
+                <h4 style="margin-top: 0;"><strong>Keynote: TBD</strong></h4>
                 <p><strong>At:</strong> TBD</p>
                 <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
                 <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day3-session1" data-toggle="collapse" aria-expanded="false">
+                  <a class="toggle-link" href="#keynote2" data-toggle="collapse" aria-expanded="false">
                     <span class="toggle-icon">▶</span>More Details
                   </a>
                 </p>
-                <div id="day3-session1" class="collapse"
+                <div id="keynote2" class="collapse"
                   style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
                   <p><strong>Description:</strong> TBD</p>
                   <p><strong>About Speaker:</strong> TBD</p>
@@ -336,51 +388,61 @@
             </div>
           </div>
 
-          <!-- Session 2: 10:00 - 11:00 -->
-          <div class="info-card">
+          <!-- Break 10:00 - 10:30 -->
+          <div class="info-card" style="background: #f9f9f9;">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>10:00 - 11:00</strong></h4>
+                <h4 style="margin-top: 0;"><strong>10:00 - 10:30</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day3-session2" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day3-session2" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
-                </div>
+                <h4 style="margin-top: 0;">
+                  <img src="images/icons/coffee.svg" alt="Coffee Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+                  <strong>Break</strong>
+                </h4>
               </div>
             </div>
-          </div>
+          </div>  
 
-          <!-- Session 3: 11:00 - 12:00 -->
+          <!-- Session 4A / 4B : 10:30 - 11:30 -->
           <div class="info-card">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>11:00 - 12:00</strong></h4>
+                <h4 style="margin-top: 0;"><strong>10:30 - 11:30</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day3-session3" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day3-session3" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
+                <div class = "row">
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 4A:<br/>Adversarial Machine Learning</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session4a" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session4a" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>139.</strong> Democratizing False Positives Filtering Through Learning Assisted Reasoning</p>
+                      <p><strong>513.</strong> Merge Now, Regret Later: The Hidden Cost of Model Merging Is Adversarial Transferability</p>
+                      <p><strong>516.</strong> How ViT Backdoors Affect Post-Hoc Explanations and What this Means for XAI-based Defenses</p>
+                    </div>
+                  </div>
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 4B:<br/>Network & Distributed Systems Security</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session4b" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session4b" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>405.</strong> Effective and Efficient Threat Hunting with Small Language Models</p>
+                      <p><strong>610.</strong> Finding a Needle in a Haystack: Index Poisoning and Mitigation in IPFS DHT</p>
+                      <p><strong>717.</strong> ShadowICS: Detecting OT Sandboxes via Passive Industrial Traffic Monitoring</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -390,129 +452,143 @@
           <div class="info-card" style="background: #f9f9f9;">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>12:00 - 13:00</strong></h4>
+                <h4 style="margin-top: 0;"><strong>12:00 - 13:30</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Lunch Break</strong></h4>
+                <h4 style="margin-top: 0;">
+                  <img src="images/icons/lunch.svg" alt="Lunch Break" style="width: 24px; height: 24px; margin-right: 8px;">
+                  <strong>Lunch Break</strong></h4>
               </div>
             </div>
           </div>
 
-          <!-- Session 4: 13:00 - 14:00 -->
+          <!-- Session 5A / 5B: 13:30 - 14:50 -->
           <div class="info-card">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>13:00 - 14:00</strong></h4>
+                <h4 style="margin-top: 0;"><strong>13:30 - 14:50</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day3-session4" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day3-session4" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
+                <div class = "row">
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 5A:<br/>LLM Safety &amp; Robustness</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session5a" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session5a" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>19.</strong> CoT-GraphPoison: A Novel Poisoning Attack Targeting Chain-of-Reasoning in GraphRAG</p>
+                      <p><strong>36.</strong> DYNASHIELD: A Black-Box Moving Target Defense for LLMs via Dynamic Decoding Customization</p>
+                      <p><strong>249.</strong> Release-Time Safety Is Not Deployment-Time Safety in Agentic LLMs</p>
+                      <p><strong>286.</strong> aiXamine: Unified Black-Box Evaluation of Cross-Dimensional Trade-offs in LLM Safety, Security, and Privacy</p>
+                    </div>
+                  </div>
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 5B:<br/>Hardware &amp; Architecture Security</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session5b" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session5b" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>410.</strong> A Covert Channel via Scheduler-Driven Core Migration on Hybrid CPUs</p>
+                      <p><strong>63.</strong> Lightweight Detection of Electromagnetic Signal Injection Attacks on Image Sensors</p>
+                      <p><strong>703.</strong> Devlore: Device Interrupt Protection for Confidential VMs</p>
+                      <p><strong>710.</strong> Reverse Engineering and Systematic Evaluation of Prefetcher-Based Security Vulnerabilities in Commercial RISC-V Processors</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Session 5: 14:00 - 15:00 -->
-          <div class="info-card">
-            <div class="row">
-              <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>14:00 - 15:00</strong></h4>
-              </div>
-              <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day3-session5" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day3-session5" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Coffee Break: 15:00 - 15:30 -->
+          <!-- Break 14:50 - 15:30 -->
           <div class="info-card" style="background: #f9f9f9;">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>15:00 - 15:30</strong></h4>
+                <h4 style="margin-top: 0;"><strong>14:50 - 15:30</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Coffee Break</strong></h4>
+                <h4 style="margin-top: 0;">
+                  <img src="images/icons/coffee.svg" alt="Coffee Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+                  <strong>Break</strong>
+                </h4>
               </div>
             </div>
-          </div>
+          </div>   
 
-          <!-- Session 6: 15:30 - 16:30 -->
+          <!-- Session 6A / 6B: 15:30 - 16:50 -->
           <div class="info-card">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>15:30 - 16:30</strong></h4>
+                <h4 style="margin-top: 0;"><strong>15:30 - 16:50</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day3-session6" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day3-session6" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
+                <div class = "row">
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 6A:<br/>Malware Detection &amp; Analysis</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session6a" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session6a" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>2.</strong> Concept Drifts, Detector Evolves: Malware Detection Made Easy with LLMalware</p>
+                      <p><strong>91.</strong> Smoke and Mirrors: Systematic OT Malware Elicitation</p>
+                      <p><strong>94.</strong> AndroTruth: A Reliable Benchmark Android Malware Dataset Derived from Technical Expert Reports</p>
+                      <p><strong>309.</strong> Small, Free, and Effective: Orchestrating Open-Weight Small Language Models to Outperform Single LLM for Malware Analysis</p>
+                    </div>
+                  </div>
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 6B:<br/>Software Supply Chain Security</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session6b" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session6b" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>56.</strong> Supply Chain Insecurity: Exposing Vulnerabilities in iOS Dependency Management Systems</p>
+                      <p><strong>266.</strong> Where Patches Stall: Ecosystem-Level Constraint Policies, Not Upstream Health, Covary with Supply Chain Propagation</p>
+                      <p><strong>315.</strong> Vulnerability Evolution and the Promise of Automated Gatekeeping in Open-Source Software</p>
+                      <p><strong>360.</strong> Adversarial Python Package Generation via Piggybacking with Large Language Models</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Session 7: 16:30 - 17:30 -->
-          <div class="info-card">
+          <!-- Buffet Dinner 18:00 - 20:00 -->
+          <div class="info-card" style="background: #f9f9f9;">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>16:30 - 17:30</strong></h4>
+                <h4 style="margin-top: 0;"><strong>18:00 - 20:00</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day3-session7" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day3-session7" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
-                </div>
+                <h4 style="margin-top: 0;">
+                  <img src="images/icons/buffet.svg" alt="Dinner Buffet" style="width: 24px; height: 24px; margin-right: 8px;">
+                  <strong>Buffet Dinner</strong>
+                </h4>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Day 4: October 14 -->
-        <div id="day4" class="tab-pane fade">
+        <!-- Day 3: October 14 -->
+        <div id="day3" class="tab-pane fade">
           <div class="text-center" style="margin-bottom: 30px;">
             <h3 style="margin-bottom: 15px;">October 14, 2026 (Wednesday)</h3>
             <a class="btn btn-raid-outline" href="#" target="_blank">
@@ -520,202 +596,128 @@
             </a>
           </div>
 
-          <!-- Session 1: 09:00 - 10:00 -->
+          <!-- Session 7A / 7B: 08:30 - 09:50 -->
           <div class="info-card">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>09:00 - 10:00</strong></h4>
+                <h4 style="margin-top: 0;"><strong>08:30 - 09:50</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day4-session1" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day4-session1" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
+                <div class = "row">
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 7A:<br/>Software Vulnerability &amp; Code Repair</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session7a" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session7a" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>281.</strong> mono: Is Source Code Enough for Verification? Stratifying Patch-Mined Vulnerability Fixes by Context Sufficiency</p>
+                      <p><strong>352.</strong> Prism: A Multi-Team Orchestration of LLM Agents for Automatic Program Repair</p>
+                      <p><strong>453.</strong> Focus on What Matters: Fisher-Guided Adaptive Multimodal Fusion for Vulnerability Detection</p>
+                      <p><strong>648.</strong> To WASM or Not to WASM: Evaluation of Browser Fingerprinting Defenses Under WASM based Obfuscation</p>
+                    </div>
+                  </div>
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 7B:<br/>Machine Learning Defenses &amp; Backdoors</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session7b" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session7b" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>84.</strong> Hidden Threats in a Single Round: Backdoor Attack on One-Shot Federated Learning</p>
+                      <p><strong>335.</strong> Backdooring Acoustic Foundation Models for Physically Realizable Triggers</p>
+                      <p><strong>368.</strong> CARIS: Layer-to-Neuron Local Repair for Deep Neural Networks</p>
+                      <p><strong>391.</strong> UDPU: Unlabeled Data Purification and Unlearning for Backdoor Defense</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Session 2: 10:00 - 11:00 -->
-          <div class="info-card">
+          <!-- Break 10:00 - 10:30 -->
+          <div class="info-card" style="background: #f9f9f9;">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>10:00 - 11:00</strong></h4>
+                <h4 style="margin-top: 0;"><strong>10:00 - 10:30</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day4-session2" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day4-session2" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
-                </div>
+                <h4 style="margin-top: 0;">
+                  <img src="images/icons/coffee.svg" alt="Coffee Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+                  <strong>Break</strong>
+                </h4>
               </div>
             </div>
-          </div>
+          </div>   
 
-          <!-- Session 3: 11:00 - 12:00 -->
+          <!-- Session 8A / 8B : 10:30 - 12:00 -->
           <div class="info-card">
             <div class="row">
               <div class="col-md-3">
                 <h4 style="margin-top: 0;"><strong>11:00 - 12:00</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day4-session3" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day4-session3" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
+                <div class = "row">
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 8A:<br/>Anomaly Detection &amp; Honeypots</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session8a" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session8a" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>436.</strong> VR-Themis: A Scalable Framework for Virtual Reality Application Clone Detection</p>
+                      <p><strong>823.</strong> Beyond the Blank Slate: Typed Operating System State for Cross-Session Consistency in LLM-Powered Honeypots</p>
+                      <p><strong>831.</strong> CANDLe : Discerning Deep Learning Methods for CAN Bus Intrusion Detection via a Reproducible and Extensible Benchmarking Framework</p>
+                    </div>
+                  </div>
+                  <div class = "col-md-6">
+                    <h4 style="margin-top: 0;"><strong>Session 8B:<br/>Session 8B: Usable Security &amp; Human Factors</strong></h4>
+                    <p><strong>At:</strong> TBD</p>
+                    <p><strong>Chair:</strong> TBD</p>
+                    <p style="margin-top: 12px;">
+                      <a class="toggle-link" href="#session8b" data-toggle="collapse" aria-expanded="false">
+                        <span class="toggle-icon">▶</span>Presenting Papers
+                      </a>
+                    </p>
+                    <div id="session8b" class="collapse"
+                      style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
+                      <p><strong>26.</strong> VersaPSE: Versatile Password Strength Evaluation Using Continual Learning</p>
+                      <p><strong>126.</strong> Caught on Camera: Toward Evaluating and Defending On-screen Deepfakes With Mobile and Wearable Camera Devices</p>
+                      <p><strong>494.</strong> Understanding the Impact of AI Code Assistants on Security API Usage: An Empirical Study</p>
+                      <p><strong>944.</strong> "It Seems Like an Advertisement": Attention, Interpretation, and Response to Mobile Antivirus Warnings</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Lunch Break: 12:00 - 13:00 -->
+          <!-- Closing Ceremony & Social Networking 12:00 - 14:30 -->
           <div class="info-card" style="background: #f9f9f9;">
             <div class="row">
               <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>12:00 - 13:00</strong></h4>
+                <h4 style="margin-top: 0;"><strong>12:00 - 14:30</strong></h4>
               </div>
               <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Lunch Break</strong></h4>
+                <h4 style="margin-top: 0;">
+                  <img src="images/icons/conversation.svg" alt="Conversation Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+                  <strong>Closing Ceremony &amp; Social Networking</strong>
+                </h4>
               </div>
             </div>
-          </div>
-
-          <!-- Session 4: 13:00 - 14:00 -->
-          <div class="info-card">
-            <div class="row">
-              <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>13:00 - 14:00</strong></h4>
-              </div>
-              <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day4-session4" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day4-session4" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Session 5: 14:00 - 15:00 -->
-          <div class="info-card">
-            <div class="row">
-              <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>14:00 - 15:00</strong></h4>
-              </div>
-              <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day4-session5" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day4-session5" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Coffee Break: 15:00 - 15:30 -->
-          <div class="info-card" style="background: #f9f9f9;">
-            <div class="row">
-              <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>15:00 - 15:30</strong></h4>
-              </div>
-              <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Coffee Break</strong></h4>
-              </div>
-            </div>
-          </div>
-
-          <!-- Session 6: 15:30 - 16:30 -->
-          <div class="info-card">
-            <div class="row">
-              <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>15:30 - 16:30</strong></h4>
-              </div>
-              <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Session Title: TBD</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Chair:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day4-session6" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day4-session6" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                  <p><strong>About Speaker:</strong> TBD</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Closing Session: 16:30 - 17:30 -->
-          <div class="info-card">
-            <div class="row">
-              <div class="col-md-3">
-                <h4 style="margin-top: 0;"><strong>16:30 - 17:30</strong></h4>
-              </div>
-              <div class="col-md-9">
-                <h4 style="margin-top: 0;"><strong>Closing Ceremony</strong></h4>
-                <p><strong>At:</strong> TBD</p>
-                <p><strong>Note:</strong> TBD</p>
-                <p style="margin-top: 12px;">
-                  <a class="toggle-link" href="#day4-session7" data-toggle="collapse" aria-expanded="false">
-                    <span class="toggle-icon">▶</span>More Details
-                  </a>
-                </p>
-                <div id="day4-session7" class="collapse"
-                  style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;">
-                  <p><strong>Description:</strong> TBD</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div>          
         </div>
 
       </div>
