@@ -189,7 +189,7 @@ function renderAcceptedPapers() {
             </svg>
           </div>
           <div class="col-md-10">
-            <h4 style="margin-top: 0; margin-bottom: 8px; font-size: 18px;"><strong>${paper.title}</strong></h4>
+            <h4 style="margin-top: 0; margin-bottom: 8px; font-size: 18px;"><strong><a href="https://infosec.waynechiu.cc/hostings/raid2026/${paper.id}.pdf" target="_blank">${paper.title}</a></strong></h4>
             <p style="margin: 0; font-size: 15px; color: #555;">${paper.authors}</p>
           </div>
         </div>
