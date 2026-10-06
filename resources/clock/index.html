@@ -1,0 +1,935 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>A British Rail Clock.</title>
+    <meta name="description" content="A digital recreation of a British Rail analogue clock.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="open-graph-image.png" />
+    <meta property="og:description" content="A digital recreation of a British Rail analogue clock.">
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="631" />
+    <meta name="theme-color" content="#ff3300">
+    <link rel="icon" type="image/png" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-180.png">
+    <meta name="apple-mobile-web-app-title" content="British Rail Clock">
+    <link rel="manifest" href="manifest.json">
+    <link rel="canonical" href="https://rail.lewiscollard.com/british-rail-clock/">
+  </head>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+
+      font-family: 'NewRailAlphabet', 'Helvetica Neue', 'helvetica', 'arial', sans-serif;
+
+      overflow: hidden;
+    }
+
+    [v-cloak] {
+      display: none;
+    }
+
+    .fc-Wrapper {
+      position: relative;
+      align-items: center;
+      justify-content: center;
+
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+
+      background-color: #fff;
+      color: #fff;
+    }
+
+    .fc-Face {
+      position: relative;
+
+      flex-shrink: 0;
+
+      /* Fallbacks. Assume that they're on IE11, which means probs a display
+      that is wider than it is tall. */
+      width: 90vh;
+      height: 90vh;
+      /* Otherwise, as we're square, we'll take the smallest of the viewport
+      width or viewport height. */
+      width: min(90vh, 90vw);
+      height: min(90vh, 90vw);
+
+      background-color: #fff;
+      border-radius: 50%;
+    }
+
+    .fc-Face_Background {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      border-radius: 50%;
+    }
+
+    .fc-Face_Background-aluminium {
+      background-color: rgb(217, 217, 217);
+      /* works in Firefox, despite the prefix, but sorry IE11 (see fallback above) */
+      background-image: -webkit-radial-gradient(50% 50%, 200% 50%, rgb(230, 230, 230) 5%, rgb(217, 217, 217) 30%, rgb(180, 180, 180) 100%);
+    }
+
+    .fc-Face_Background-backlitTungsten,
+    .fc-Face_Background-backlitTungsten::before {
+      background-color: #ffdba7;
+      background-image: -webkit-radial-gradient(50% 50%, 200% 50%, rgb(255, 219, 167) 5%, rgb(249, 199, 141) 30%, rgb(229, 174, 117) 100%);
+    }
+
+    .fc-Face_Background-backlitFluorescent,
+    .fc-Face_Background-backlitFluorescent::before {
+      /* ref photo: https://commons.wikimedia.org/wiki/File:Clapham_Junction_Railway_Station_-_Foot_Tunnel_at_Night_-_London_-_240404.jpg */
+      background-color: #fcff98;
+      background-image: -webkit-radial-gradient(50% 50%, 200% 50%, rgb(234, 235, 230) 2%, rgb(255, 254, 209) 30%, rgb(203, 208, 94) 90%);
+    }
+
+    .fc-Face_Background::before {
+      content: '';
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      border-radius: 50%;
+      opacity: 0.5;
+      /* can't use % but this will do :) */
+      filter: blur(3vh);
+    }
+
+    .fc-Face_Background svg {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      /* needed so it shows above the pseudo-element on the backlit version */
+      z-index: 1;
+    }
+
+    .fc-Face_Logo {
+      position: absolute;
+
+      bottom: 25%;
+      left: 40%; /*50 - width/2*/
+
+      height: 20%;
+      width: 20%;
+    }
+
+    .fc-Face_Logo svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .hnd-Hour,
+    .hnd-Minute,
+    .hnd-Second {
+      position: absolute;
+
+      transform-origin: 50% 50%;
+    }
+
+    .hnd-Hour {
+      top: 20%;
+      left: calc(50% - 2.8%);
+      bottom: 20%;
+      /* 1 = above the optional double arrow */
+      z-index: 1;
+
+      width: 5.6%;
+    }
+
+    .hnd-Minute {
+      top: 8.5%;
+      bottom: 8.5%;
+      left: calc(50% - 2.96%);
+      z-index: 1;
+
+      width: 5.82%;
+    }
+
+    .hnd-Minute svg {
+      position: absolute;
+      top: 0;
+
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hnd-Second {
+      top: 2.95%;
+      bottom: 2.95%;
+      left: calc(50% - 1.17%);
+      z-index: 2;
+
+      width: 2.33%;
+    }
+
+    .hnd-Second svg {
+      position: absolute;
+      top: 0;
+
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .dbg-Debug {
+      position: fixed;
+      top: 0;
+      left: 0;
+
+      width: 260px;
+      height: 100%;
+
+      background-color: #000;
+      border: none;
+      border-right: 1px solid #00ff41;
+      color: #00ff41;
+      font-size: 10px;
+    }
+
+    /* Circle that helps us get the centre of our clock face perfectly lined up */
+    .dbg-Circle {
+      position: absolute;
+      top: calc(50% - 5px);
+      left: calc(50% - 5px);
+      z-index: 10;
+
+      width: 10px;
+      height: 10px;
+
+      border: 2px solid #0f0;
+      border-radius: 50%;
+    }
+
+    .mn-Trigger {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 11;
+
+      align-items: center;
+
+      display: flex;
+      padding: 12px 8px;
+
+      background-color: #000;
+      cursor: pointer;
+      /* stops duplicate clicks causing a text selection */
+      user-select: none;
+    }
+
+    .mn-Trigger-open {
+      flex-direction: row-reverse;
+
+      background-color: #fff;
+      color: #333;
+    }
+
+    .mn-Trigger_Text {
+      font-weight: 500;
+
+      margin-left: 8px;
+    }
+
+    .mn-Trigger-open .mn-Trigger_Text {
+      margin-right: 8px;
+      margin-left: 0;
+    }
+
+    .mn-Trigger svg {
+      width: 20px;
+      height: 13px;
+
+      fill: currentColor;
+
+      transform: rotate(180deg);
+    }
+
+    .mn-Trigger-open svg {
+      transform: none;
+    }
+
+    @keyframes ani-SlideIn {
+      0% {
+        transform: translateX(100%);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+    .mn-Menu {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 10;
+
+      width: 300px;
+      height: 100vh;
+      padding: 72px 24px 24px;
+
+      background-color: #fff;
+      box-shadow: -10px 0px 20px rgba(0, 0, 0, 0.5);
+      color: #333;
+      overflow-y: auto;
+
+      animation-name: ani-SlideIn;
+      animation-duration: 0.2s;
+    }
+
+    .mn-Option {
+      margin-bottom: 16px;
+    }
+
+    .mn-Option:last-child {
+      margin-bottom: 0;
+    }
+
+    .mn-Option_Label {
+      display: block;
+      margin-top: 3px;
+
+      font-weight: 500;
+    }
+
+    .mn-Option_Label-select {
+      margin-top: 0;
+      margin-bottom: 4px;
+    }
+
+    .mn-Option_Setting {
+      align-items: center;
+
+      display: flex;
+    }
+
+    .mn-Option_Setting-select {
+      display: block;
+    }
+
+    .mn-Option_Checkbox {
+      flex-shrink: 0;
+      display: block;
+      height: 20px;
+      width: 20px;
+      margin: 0;
+      margin-right: 12px;
+
+      appearance: none;
+      -moz-appearance: none;
+      background-color: #fff;
+      border: 1px solid #aaa;
+    }
+
+    .mn-Option_Checkbox:checked {
+      background-color: #ff3300;
+      border: none;
+    }
+
+    .mn-Option_Select {
+      width: 100%;
+    }
+
+    .mn-Option_Details {
+      margin-top: 8px;
+
+      font-size: 14px;
+    }
+
+    .mn-Option_Textarea {
+      width: 100%;
+      height: 100px;
+
+      font-size: 12px;
+    }
+
+    .mn-Option_Expander,
+    .mn-Option_Heading {
+      margin: 0;
+      margin-bottom: 8px;
+
+      font-size: inherit;
+      font-weight: 500;
+    }
+
+    .mn-Option_Heading-largeMargin {
+      margin-bottom: 16px;
+    }
+
+    .mn-Option_Expander {
+      align-items: center;
+      display: flex;
+
+      cursor: pointer;
+    }
+
+    .mn-Option_Expander svg {
+      width: 18px;
+      height: 10px;
+
+      margin-left: auto;
+
+      transform: rotate(90deg);
+    }
+
+    .mn-Option_Expander-expanded svg {
+      transform: rotate(-90deg);
+    }
+
+    .mn-Separator {
+      margin: 16px 0;
+      border: solid #aaa;
+      border-width: 0 0 1px;
+    }
+
+
+    .mn-Button {
+      display: block;
+      width: 100%;
+
+      border: none;
+      background-color: #f30;
+      color: #fff;
+
+      padding: 8px 20px;
+
+      font-style: inherit;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .mn-Input {
+      margin-top: 8px;
+    }
+
+    .mn-Input input {
+      width: 100px;
+    }
+  </style>
+
+  <body>
+    <div id="vue-mount" v-cloak>
+      <div class="fc-Wrapper">
+        <div class="fc-Face">
+          <div class="fc-Face_Background" :class="'fc-Face_Background-' + userPreferences.faceColour">
+            <!-- SVG for the clock face markers -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1412.3 1412.3">
+              <path :fill="dialMarkingsFill" d="M766.9 44.08l15.02 1.54-6.1 56.85-15-1.55zm70.7 11.54l14.76 3.1-12 55.9-14.77-3.1zm67.5 16.51l14.37 4.63-17.78 54.34-14.36-4.64zm64.88 23.78l13.8 6.11-23.36 52.18-13.8-6.11zm121.13 69l12.23 8.85-33.7 46.18-12.22-8.85zm55.31 43.08l11.24 10.07-38.35 42.4-11.23-10.07zm50.48 48.08l10.11 11.2-42.56 38.16-10.12-11.2zm44.52 55.03l8.9 12.2-46.33 33.5-8.9-12.18zm72.26 121.24l6.17 13.77-52.28 23.15-6.16-13.78zm25.45 64.28l4.7 14.34-54.41 17.55-4.7-14.34zm16.72 67.8l3.17 14.75-55.95 11.77-3.17-14.75zm12.47 68.11l1.6 15-56.86 5.87-1.6-15zm1.76 135.35l-1.55 15.01-56.84-6.1 1.55-15zm-11.55 70.69l-3.1 14.76-55.9-12 3.1-14.76zm-16.5 67.51l-4.64 14.36-54.33-17.77 4.63-14.37zm-23.79 64.88l-6.11 13.8-52.18-23.37 6.11-13.8zm-68.99 121.14l-8.85 12.22-46.18-33.7 8.85-12.22zm-43.08 55.3l-10.08 11.24-42.4-38.34 10.07-11.24zm-48.09 50.47l-11.19 10.12-38.17-42.57 11.2-10.12zm-55.04 44.53l-12.19 8.9-33.5-46.33 12.19-8.89zm-121.22 72.26l-13.77 6.17-23.15-52.28 13.78-6.16zm-64.28 25.45l-14.35 4.7-17.55-54.41 14.34-4.7zm-67.8 16.72L835 1360l-11.77-55.95 14.75-3.16zm-68.12 12.47l-15 1.6-5.86-56.87 15-1.6zm589.91-682.64v40.73h-166.86v-40.73zm-80.03 334.54l-20.37 35.26-144.5-83.43 20.36-35.27zm-236.4 252.75l-35.27 20.37-83.43-144.5 35.27-20.37zm-410.28 97.35l-15.01-1.54 6.1-56.85 15 1.55zm-70.69-11.54l-14.77-3.1 12-55.9 14.77 3.1zm-67.53-16.51l-14.35-4.63 17.78-54.34 14.36 4.64zm-64.86-23.78l-13.8-6.11 23.36-52.18 13.8 6.11zm-121.14-69l-12.22-8.84 33.7-46.18 12.22 8.84zm-55.3-43.07l-11.24-10.08 38.34-42.4 11.24 10.07zm-50.47-48.09l-10.12-11.19 42.56-38.17 10.12 11.2zm-44.53-55.03l-8.9-12.2 46.32-33.5 8.9 12.19zM98.04 983.04l-6.16-13.77 52.27-23.14 6.17 13.77zm-25.46-64.28l-4.69-14.34 54.41-17.55 4.7 14.34zm-16.7-67.79L52.7 836.2l55.94-11.77 3.17 14.76zM43.4 782.85l-1.6-15 56.87-5.86 1.6 15zm682.64 589.92h-40.73V1205.9h40.73zm-334.54-80.05l-35.27-20.36 83.43-144.5 35.27 20.36zm-252.75-236.4l-20.37-35.27 144.5-83.43 20.37 35.27zM42.44 645.39L44 630.38l56.85 6.09-1.55 15.01zm11.54-70.69l3.1-14.77 55.9 12-3.1 14.77zm16.51-67.52l4.63-14.36 54.34 17.78-4.64 14.36zm23.78-64.88l6.11-13.8 52.18 23.37-6.1 13.8zm69-121.12l8.84-12.23 46.19 33.7-8.85 12.23zm43.08-55.32l10.08-11.23 42.4 38.34-10.07 11.23zm48.07-50.46l11.2-10.12 38.16 42.57-11.19 10.12zm55.05-44.53l12.2-8.9 33.5 46.33-12.19 8.9zM430.7 98.6l13.77-6.16 23.15 52.28-13.78 6.16zm64.28-25.45l14.34-4.7 17.56 54.41-14.34 4.7zm67.8-16.71l14.75-3.17 11.77 55.95-14.75 3.16zm68.12-12.46l15-1.61 5.86 56.87-15 1.6zM40.97 726.6v-40.72h166.86v40.73zm80.05-334.53l20.37-35.27 144.5 83.43-20.36 35.27zm236.4-252.77l35.27-20.36 83.43 144.5-35.27 20.37zM685.68 42.62h40.73v166.86h-40.73zm334.53 80.04l35.28 20.36-83.43 144.51-35.28-20.37zm252.76 236.4l20.37 35.27-144.5 83.43-20.37-35.27z"/>
+            </svg>
+          </div>
+          <div class="fc-Face_Bezel" :class="bezelClass"></div>
+
+          <!-- Hour hand -->
+          <div :style="handStyles.hours" class="hnd-Hour">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.2163 162.6409">
+              <path d="M18.8315 3.2333L11.1305 0 3.381 3.294.0472 162.6834l22.169-.0426z"/>
+              <path v-if="userPreferences.debug" d="M10.2084 118.2985a1.5889 1.5889 0 00.536 2.1821 1.5889 1.5889 0 002.182-.536 1.5889 1.5889 0 00-.536-2.182 1.5889 1.5889 0 00-2.182.536z" fill="#ff0"/>
+            </svg>
+          </div>
+
+          <!-- Minute hand -->
+          <div :style="handStyles.minutes" class="hnd-Minute">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.3098 202.396">
+              <path d="M.003 202.4014l22.3068-.005-5.877-200.0187L11.1663.0004 5.8586 2.3841z" fill-rule="evenodd"/>
+              <path v-if="userPreferences.debug" d="M9.7977 165.1795c3.4153.7384 6.7826-1.4317 7.5211-4.847.7384-3.4154-1.4317-6.7827-4.847-7.5212-3.4154-.7384-6.7827 1.4316-7.5212 4.847-.7385 3.4154 1.4316 6.7828 4.847 7.5212z" fill="#f0f"/>
+            </svg>
+          </div>
+
+          <!-- Second hand -->
+          <div :style="handStyles.seconds" class="hnd-Second">
+            <!-- SVG for the seconds hand. -->
+            <svg viewBox="0 0 8.734 219.7195" height="830.436" width="33.0102">
+              <path :fill="secondHandFill"  d="M8.6417 175.8007a4.367 4.367 0 00-5.1677-3.3817 4.367 4.367 0 00-3.3817 5.1678 4.367 4.367 0 005.1677 3.3816 4.367 4.367 0 003.3817-5.1677z"/>
+              <path :fill="secondHandFill" d="M.8899 219.7195h6.9737L5.9454 0H2.8081z"/>
+              <path v-if="userPreferences.debug" d="M5.913 176.3644a1.5889 1.5889 0 00-1.8802-1.2304 1.5889 1.5889 0 00-1.2303 1.8802 1.5889 1.5889 0 001.8802 1.2304 1.5889 1.5889 0 001.2303-1.8802z" fill="#ff0"/>
+            </svg>
+          </div>
+
+          <div v-if="userPreferences.showLogo" class="fc-Face_Logo">
+            <!-- Optional double-arrow logo -->
+            <!--
+            <svg viewBox="0 0 2061 1236">
+              <path :fill="dialMarkingsFill" d="M386.94.5l675.12 291.74L2.03 295.29.5 498.44h1069.2l-499.47 239.8-568.2 3.06L.5 945.97l571.26-3.05 618.6 293.26 488.78-1.52-688.87-291.74L2061 941.39V735.2l-1070.72 3.05 501-244.38 568.2 1.52-1.53-204.67-568.2 1.53L863.5.5z"/>
+            </svg>-->
+            <svg height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 512 512" xml:space="preserve">
+            <path style="fill:#41479B;" d="M473.655,88.276H38.345C17.167,88.276,0,105.443,0,126.621V385.38
+              c0,21.177,17.167,38.345,38.345,38.345h435.31c21.177,0,38.345-17.167,38.345-38.345V126.621
+              C512,105.443,494.833,88.276,473.655,88.276z"/>
+            <path style="fill:#F5F5F5;" d="M511.469,120.282c-3.022-18.159-18.797-32.007-37.814-32.007h-9.977l-163.54,107.147V88.276h-88.276
+              v107.147L48.322,88.276h-9.977c-19.017,0-34.792,13.847-37.814,32.007l139.778,91.58H0v88.276h140.309L0.531,391.717
+              c3.022,18.159,18.797,32.007,37.814,32.007h9.977l163.54-107.147v107.147h88.276V316.577l163.54,107.147h9.977
+              c19.017,0,34.792-13.847,37.814-32.007l-139.778-91.58H512v-88.276H371.691L511.469,120.282z"/>
+            <g>
+              <polygon style="fill:#FF4B55;" points="282.483,88.276 229.517,88.276 229.517,229.517 0,229.517 0,282.483 229.517,282.483 
+                229.517,423.724 282.483,423.724 282.483,282.483 512,282.483 512,229.517 282.483,229.517 	"/>
+              <path style="fill:#FF4B55;" d="M24.793,421.252l186.583-121.114h-32.428L9.224,410.31
+                C13.377,415.157,18.714,418.955,24.793,421.252z"/>
+              <path style="fill:#FF4B55;" d="M346.388,300.138H313.96l180.716,117.305c5.057-3.321,9.277-7.807,12.287-13.075L346.388,300.138z"
+                />
+              <path style="fill:#FF4B55;" d="M4.049,109.475l157.73,102.387h32.428L15.475,95.842C10.676,99.414,6.749,104.084,4.049,109.475z"/>
+              <path style="fill:#FF4B55;" d="M332.566,211.862l170.035-110.375c-4.199-4.831-9.578-8.607-15.699-10.86L300.138,211.862H332.566z"
+                />
+            </g>
+            </svg>
+          </div>
+
+          <!-- In debug mode, helps us get the centre of the hands lined up perfectly. -->
+          <div class="dbg-Circle" v-if="userPreferences.debug"></div>
+        </div>
+
+        <div class="mn-Trigger"  v-if="!distractionFree" :class="{'mn-Trigger-open': userPreferences.menuOpen}" @click="toggleMenu">
+          <svg viewBox="0 0 134.484 90.5659">
+            <path d="M.2758 28.5659l75.7272.7144L47.5695.2753 89.7196.1325l44.579 45.0077-44.0075 45.2934H47.5695l28.5763-29.7193-76.013.4286z"/>
+          </svg>
+
+          <div class="mn-Trigger_Text">
+            <template v-if="userPreferences.menuOpen">Hide</template>
+            <template v-else>Customise</template>
+          </div>
+        </div>
+
+        <div class="mn-Menu" v-show="userPreferences.menuOpen && !distractionFree">
+          <div class="mn-Options">
+            <div class="mn-Options_Group">
+              <div class="mn-Option">
+                <div class="mn-Option_Setting">
+                  <input class="mn-Option_Checkbox" id="option-add-logo" type="checkbox" v-model="userPreferences.showLogo">
+                  <label for="option-add-logo" class="mn-Option_Label">
+                    Add logo
+                  </label>
+                </div>
+
+                <p class="mn-Option_Details">
+                  The original design manual did not show a double-arrow logo
+                  on the clock face. However, most clocks spotted in the wild did.
+                </p>
+              </div>
+
+              <div class="mn-Option">
+                <div class="mn-Option_Setting mn-Option_Setting-select">
+                  <label class="mn-Option_Label mn-Option_Label-select" for="option-second-colour">
+                    Second hand colour
+                  </label>
+                  <select class="mn-Option_Select" v-model="userPreferences.secondHandColour" id="option-second-colour">
+                    <option value="flameRed">Flame red</option>
+                    <option value="plainRed">Other red</option>
+                  </select>
+                </div>
+
+                <p class="mn-Option_Details">
+                  The design manual specified the second hand colour
+                  as merely "red". By default, this will be Flame Red, which
+                  is the best red; you can set it to a inferior red (which
+                  seemed to be used on IRL clocks) if you like.
+                </p>
+              </div>
+
+              <div class="mn-Option">
+                <div class="mn-Option_Setting mn-Option_Setting-select">
+                  <label class="mn-Option_Label mn-Option_Label-select" for="option-face-colour">
+                    Face colour
+                  </label>
+                  <select class="mn-Option_Select" v-model="userPreferences.faceColour" id="option-face-colour">
+                    <option value="white">White</option>
+                    <option value="aluminium">Aluminium</option>
+                    <option value="backlitTungsten">Backlit (tungsten light)</option>
+                    <option value="backlitFluorescent">Backlit (fluorescent light)</option>
+                  </select>
+                </div>
+
+                <p class="mn-Option_Details">
+                  'Aluminium' may not look right in Internet Explorer 11.
+                </p>
+              </div>
+
+              <div class="mn-Option">
+                <div class="mn-Option_Setting">
+                  <input class="mn-Option_Checkbox" id="option-fade-markings" type="checkbox" v-model="userPreferences.cheatMarkings">
+                  <label for="option-fade-markings" class="mn-Option_Label">
+                    Fade dial markings
+                  </label>
+                </div>
+
+                <p class="mn-Option_Details">
+                  The manual says that both the hands and face markings should
+                  be the same colour ("black"), but they are hard to distinguish from
+                  each other in a 2D recreation like this. Use this to lighten the clock face
+                  markings a little.
+                </p>
+              </div>
+
+              <div class="mn-Option">
+                <div class="mn-Option_Setting">
+                  <input class="mn-Option_Checkbox" type="checkbox" v-model="distractionFree" id="option-distractionFree">
+                  <label class="mn-Option_Label" for="option-distractionFree">Distraction-free mode</label>
+                </div>
+
+                <p class="mn-Option_Details">
+                  Turns off this menu and hides the "Customise" button. You
+                  can bring it back the latter by reloading the page.
+                </p>
+              </div>
+
+              <hr class="mn-Separator">
+
+              <h2 class="mn-Option_Expander" :class="{'mn-Option_Expander-expanded': showEmbedOptions}" @click="toggleEmbedOptions">
+                Share & embed
+
+                <svg viewBox="0 0 134.484 90.5659">
+                  <path d="M.2758 28.5659l75.7272.7144L47.5695.2753 89.7196.1325l44.579 45.0077-44.0075 45.2934H47.5695l28.5763-29.7193-76.013.4286z"/>
+                </svg>
+              </h2>
+
+              <div class="mn-Option" v-if="showEmbedOptions">
+                <p class="mn-Option_Details">
+                  Copy the link below to share this clock with your current
+                  appearance settings.
+                </p>
+
+                <textarea class="mn-Option_Textarea js-SelectAll" readonly>{{ linkWithSettings }}</textarea>
+              </div>
+
+              <div class="mn-Option" v-if="showEmbedOptions">
+                <h3 class="mn-Option_Heading mn-Option_Heading-largeMargin">Embed on your website/blog</h3>
+
+                <div class="mn-Option">
+                  <div class="mn-Option_Setting">
+                    <input class="mn-Option_Checkbox" type="checkbox" v-model="embedOptions.responsive" id="option-embed-responsive">
+                    <label class="mn-Option_Label" for="option-embed-responsive">Responsive embed</label>
+                  </div>
+
+                  <p class="mn-Option_Details">
+                    This will make your embed go the full width of whatever
+                    its containing element is. Handy if it's in an element
+                    that is already sized, such as a sidebar on your site.
+                  </p>
+                </div>
+                <div class="mn-Option" v-if="!embedOptions.responsive">
+                  <div class="mn-Input">
+                    <input type="number" v-model="embedOptions.widthAndHeight" min="200"> size (px)
+                  </div>
+                </div>
+                <textarea class="mn-Option_Textarea js-SelectAll" readonly>{{ iframeEmbedHTML }}</textarea>
+              </div>
+
+
+              <hr class="mn-Separator">
+
+
+              <div class="mn-Option">
+                <div class="mn-Option_Setting">
+                  <input class="mn-Option_Checkbox" type="checkbox" v-model="userPreferences.debug" id="option-debug">
+                  <label class="mn-Option_Label" for="option-debug">Debug mode</label>
+                </div>
+
+
+                <p class="mn-Option_Details">
+                  A world without rules and controls, without borders or boundaries.
+                </p>
+              </div>
+
+              <div class="mn-Buttons" v-if="userPreferences.debug">
+                <button class="mn-Button" v-if="updateInterval" @click="stopClock">
+                  Stop time
+                </button>
+
+                <button v-else class="mn-Button" @click="startClock">
+                  Resume time
+                </button>
+              </div>
+
+              <div class="mn-Option" v-if="userPreferences.debug">
+                <div class="mn-Input">
+                  <input type="number" min="0" max="24" v-model="time.hours"> hr
+                </div>
+                <div class="mn-Input">
+                  <input type="number" min="0" max="60" v-model="time.minutes"> min
+                </div>
+                <div class="mn-Input">
+                  <input type="number" min="0" max="60" v-model="time.seconds"> sec
+                </div>
+                <div class="mn-Input">
+                  <input type="number" v-model="time.milliseconds"> ms
+                </div>
+              </div>
+
+              <div class="mn-Option">
+                <a class="mn-Button" href="https://rail.lewiscollard.com/about-the-clock/">About & credits</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <textarea v-if="userPreferences.debug" class="dbg-Debug">
+Hand rotation:
+{{ handRotation }}
+
+Hand styles:
+{{ handStyles }}
+
+User prefs:
+{{ userPreferences }}
+        </textarea>
+      </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js" integrity="sha384-OZmxTjkv7EQo5XDMPAmIkkvywVeXw59YyYh6zq8UKfkbor13jS+5p8qMTBSA1q+F" crossorigin="anonymous"></script>
+
+    <script>
+      new Vue({
+        el: document.querySelector('#vue-mount'),
+        computed: {
+          handRotation: function () {
+            return {
+              hours: (
+                /* My interpretation of the manual is that both the hour and
+                minute hands should be updated every half-minute. For every
+                full minute, add a rotation of 0.5 degrees. If we are past
+                the half-minute mark, add another 0.25 degrees. */
+                (30 * (this.time.hours % 12)) +
+                (0.5 * this.time.minutes) +
+                (0.25 * Math.floor(this.time.seconds / 30))
+              ),
+              minutes: (
+                /* Similarly to the hour hand, this should be updated every
+                half-minute, i.e. a fractional rotation should be added at the
+                30 second mark. */
+                (6 * this.time.minutes) +
+                (Math.floor(this.time.seconds / 30) * 3)
+              ),
+              seconds: (
+                /* The second hand should have a semi-continuous sweep with
+                the mains frequency, i.e. it should update 50 times a second.
+                Each of these fractional seconds is 0.12 degrees of rotation. */
+                (6 * this.time.seconds) +
+                (0.12 * Math.floor(this.time.milliseconds / 20))
+              ),
+            }
+          },
+
+          handStyles: function () {
+            return {
+              hours: {transform: 'rotate(' + this.handRotation.hours + 'deg)'},
+              minutes: {transform: 'rotate(' + this.handRotation.minutes + 'deg)'},
+              seconds: {transform: 'rotate(' + this.handRotation.seconds + 'deg)'},
+            };
+          },
+
+          bezelClass: function  () {
+            return '';
+          },
+
+          dialMarkingsFill: function () {
+            if (this.userPreferences.cheatMarkings) {
+              return '#222';
+            }
+            return '#000';
+          },
+
+          optionsQueryString: function () {
+            // Converts a subset of the currently selected options to a query
+            // string. This is used for both updating the URL (via the history
+            // API) and, later, for preserving options when an embed code is
+            // selected. We don't want to carry over some settings. For
+            // example, debug mode should never be automatically enabled
+            // via the URL.
+            //
+            // We could do this by a tiny JSON dump, but using the query
+            // string looks less ugly in the URL.
+            const parts = [];
+
+            // Boolean settings should be 1/0.
+            this.booleanQueryOptions.forEach(function (value) {
+              parts.push(value + '=' + (this.userPreferences[value] === true ? '1' : '0'));
+            }.bind(this))
+
+            // And simple string settings.
+            this.stringQueryOptions.forEach(function(value) {
+              parts.push(value + '=' + this.userPreferences[value]);
+            }.bind(this));
+
+            return parts.join('&');
+          },
+
+          linkWithoutSettings: function () {
+            // used by both linkWithSettings and iframeEmbedHTML
+            return window.location.protocol + '//' + window.location.hostname + window.location.pathname;
+          },
+
+          linkWithSettings: function () {
+            return this.linkWithoutSettings + '?' + this.optionsQueryString;
+          },
+
+          iframeEmbedHTML: function () {
+            // Probably should do this in the template as a hidden element and
+            // then get its outerHtml? But I feel that the logic is a little
+            // bit too much for templating and diving back into the template
+            // from JS is a bit hairy.
+            const iframe = document.createElement('iframe');
+            iframe.setAttribute('frameborder', '0');
+
+
+            if (this.embedOptions.useCurrentSettings) {
+              iframe.setAttribute('src', this.linkWithSettings + '&');
+            } else {
+              iframe.setAttribute('src', this.linkWithSettings + '?distractionFree=true');
+            }
+
+            let html;
+
+            if (!this.embedOptions.responsive) {
+              iframe.setAttribute('width', this.embedOptions.widthAndHeight);
+              iframe.setAttribute('height', this.embedOptions.widthAndHeight);
+              html = iframe.outerHTML;
+            } else {
+              // Responsive parent, using padding trick to preserve the aspect
+              // ratio.
+              const divOuter = document.createElement('div');
+              divOuter.setAttribute('style', 'position: relative');
+              const divPadder = document.createElement('div');
+              divPadder.setAttribute('style', 'padding-bottom: 100%');
+              iframe.setAttribute('style', 'position: absolute; top: 0; left: 0; width: 100%; height: 100%;');
+              divOuter.appendChild(divPadder);
+              divPadder.appendChild(iframe)
+              html = divOuter.outerHTML
+            }
+            return html;
+          },
+
+          secondHandFill: function () {
+            if (this.userPreferences.secondHandColour === 'flameRed') {
+              return '#ff3300';
+            }
+
+            return '#a41e1b';
+          }
+        },
+
+        data: function () {
+          return {
+            time: {
+              hours: 2,
+              minutes: 26,
+              seconds: 31,
+              milliseconds: 0,
+            },
+            userPreferences: {
+              cheatMarkings: false,
+              debug: false,
+              faceColour: 'white',
+              showLogo: true,
+              alternateHandStyle: false,
+              secondHandColour: 'flameRed',
+              menuOpen: false,
+            },
+            embedOptions: {
+              useCurrentSettings: true,
+              responsive: true,
+              widthAndHeight: 300,
+            },
+            // Separate from userPreferences because we never want to save
+            // this (eventually I will implement saving/restoring
+            // preferences).
+            distractionFree: false,
+            showEmbedOptions: false,
+            updateInterval: null,
+
+            // There is probably a better way of doing this. Only used
+            // internally (see query string serialising/deserialising)
+            booleanQueryOptions: ['cheatMarkings', 'showLogo', 'alternateHandStyle'],
+            stringQueryOptions: ['faceColour', 'secondHandColour'],
+          }
+        },
+        methods: {
+          toggleEmbedOptions: function () {
+            this.showEmbedOptions = !this.showEmbedOptions
+          },
+
+          toggleMenu: function () {
+            this.userPreferences.menuOpen = !this.userPreferences.menuOpen
+          },
+
+          updateTime: function () {
+            const now = new Date()
+            const ukDateString = now.toLocaleString('en-US', {timeZone: 'Europe/London'});
+            const ukNow = new Date(ukDateString);
+
+            this.time.seconds = ukNow.getSeconds();
+            this.time.minutes = ukNow.getMinutes();
+            this.time.hours = ukNow.getHours();
+            this.time.milliseconds = ukNow.getMilliseconds();
+          },
+
+          /* for debug mode */
+          startClock: function () {
+            // According to the specs, the second hand will update with the AC
+            // frequency @ 50hz.
+            this.updateInterval = window.setInterval(this.updateTime, 20);
+          },
+
+          /* also for debug mode */
+          stopClock: function () {
+            if (this.updateInterval) {
+              window.clearInterval(this.updateInterval)
+            }
+            this.updateInterval = null
+          },
+
+          // helper, URLSearchParams doesn't exist in IE11 :(
+          // modified from https://stackoverflow.com/a/13419367
+          parseQueryString: function (queryString) {
+            const query = {};
+            const pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
+            pairs.forEach(function (value, ignore) {
+              const pair = value.split('=');
+              query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+            });
+            return query;
+          },
+        },
+        created: function () {
+          // Load prefs from query string if present.
+          const parsedQuery = this.parseQueryString(window.location.search);
+          // Boolean settings should be 1/0.
+          this.booleanQueryOptions.forEach(function (key) {
+            if (parsedQuery[key]) {
+              this.userPreferences[key] = (parsedQuery[key] === '1')
+            }
+          }.bind(this))
+
+          // And simple string settings.
+          this.stringQueryOptions.forEach(function(key) {
+            if (parsedQuery[key]) {
+              this.userPreferences[key] = parsedQuery[key]
+            }
+          }.bind(this));
+
+          if (parsedQuery.distractionFree) {
+            this.distractionFree = (parsedQuery.distractionFree === '1')
+          }
+
+          this.updateTime();
+          this.startClock();
+        },
+      });
+    </script>
+  </body>
+</html>
