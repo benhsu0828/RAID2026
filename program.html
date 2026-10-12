@@ -98,7 +98,7 @@
       <!-- Tab Content -->
       <div class="tab-content">
         <!-- Day 0: October 11 -->
-        <div id="day0" class="tab-pane fade">
+        <div id="day0" class="tab-pane fade in active">
           <div class="text-center" style="margin-bottom: 30px;">
             <h3 style="margin-bottom: 15px;">October 11, 2026 (Sunday)</h3>
             <!--
@@ -124,7 +124,7 @@
         </div>
 
         <!-- Day 1: October 12 -->
-        <div id="day1" class="tab-pane fade in active">
+        <div id="day1" class="tab-pane fade">
           <div class="text-center" style="margin-bottom: 30px;">
             <h3 style="margin-bottom: 15px;">October 12, 2026 (Monday)</h3>
             <!--
@@ -1201,23 +1201,23 @@
 
         // 3. Trigger the Bootstrap Tab switch
         const targetLink = document.querySelector(`.nav-tabs a[href="${targetTabId}"]`);
+        const targetPane = document.querySelector(targetTabId);
         
-        if (targetLink) {
+        if (targetLink && targetPane) {
           // Remove the active class from all li elements
           document.querySelectorAll('.nav-tabs li').forEach(li => li.classList.remove('active'));
-          //document.querySelectorAll('.tab-pane').forEach(tab => tab.classList.remove('active', 'in'));
           
           // Add the active class to the target li
           targetLink.parentElement.classList.add('active');
 
-          // Trigger the Bootstrap tab switch event (supports jQuery / Bootstrap 3 & 4)
-          if (window.jQuery && typeof jQuery(targetLink).tab === 'function') {
-            jQuery(targetLink).tab('show');
-          } else {
-            // Pure native JS fallback
-            targetLink.click();
-          }
+          document.querySelectorAll('.tab-content .tab-pane').forEach(pane => {
+            pane.classList.remove('active', 'in');
+          });
+
+          targetPane.classList.add('active', 'in');
         }
+
+        
       });
     </script>
 </body>
